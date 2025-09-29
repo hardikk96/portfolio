@@ -5,19 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Coming Soon | Hardik Kachhwaha</title>
 
+<!-- Google Font: Poppins -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+
 <!-- Particle.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <style>
-  body, html {
+  html, body {
     margin: 0;
     padding: 0;
     height: 100%;
     width: 100%;
-    background: linear-gradient(135deg, #0f2027, #001f4d, #002f70); /* darker cobalt gradient */
-    color: #ffffff;
-    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #001f4d, #002f70); /* cobalt-dark gradient */
+    font-family: 'Poppins', sans-serif;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   #particles-js {
@@ -27,83 +32,59 @@
     z-index: 0;
   }
 
-  .content {
+  .coming-soon {
     position: relative;
     z-index: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+    font-size: 6vw;
+    font-weight: 700;
+    color: #0047AB;
     text-align: center;
-    padding: 20px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow:
+      0 0 10px #0047AB,
+      0 0 20px #0047AB,
+      0 0 30px #0047AB,
+      0 0 40px #00aaff,
+      0 0 50px #00aaff;
+    animation: glow 2s ease-in-out infinite alternate;
   }
 
-  h1 {
-    font-size: 3rem;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-    color: #0047AB; /* cobalt blue headline */
-    text-shadow: 0 0 10px #0047AB;
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-  }
-
-  p {
-    font-size: 1.2rem;
-    max-width: 450px;
-    color: #cccccc;
-    margin-bottom: 40px;
-  }
-
-  .progress-container {
-    width: 300px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 20px;
-    overflow: hidden;
-  }
-
-  .progress-bar {
-    width: 0%;
-    height: 15px;
-    background: #0047AB; /* cobalt blue progress */
-    border-radius: 20px;
-    transition: width 0.5s ease;
+  @keyframes glow {
+    0% { text-shadow:
+      0 0 10px #0047AB,
+      0 0 20px #0047AB,
+      0 0 30px #0047AB,
+      0 0 40px #00aaff,
+      0 0 50px #00aaff; }
+    100% { text-shadow:
+      0 0 20px #0047AB,
+      0 0 40px #0047AB,
+      0 0 60px #0047AB,
+      0 0 80px #00aaff,
+      0 0 100px #00aaff; }
   }
 
   @media (max-width: 480px) {
-    h1 { font-size: 2rem; }
-    p { font-size: 1rem; }
-    .progress-container { width: 200px; }
+    .coming-soon { font-size: 12vw; letter-spacing: 3px; }
   }
 </style>
 </head>
 <body>
 
 <div id="particles-js"></div>
-
-<div class="content">
-  <h1>Coming Soon</h1>
-  <p>Hi, I’m Hardik Kachhwaha. My portfolio is loading data… stay tuned for projects, analytics, and AI insights!</p>
-  <div class="progress-container">
-    <div class="progress-bar" id="progress-bar"></div>
-  </div>
-</div>
+<div class="coming-soon">Coming Soon</div>
 
 <script>
-// Particle.js configuration with cobalt blue "neural network" effect
+// Particle.js config with "neural network" effect
 particlesJS("particles-js", {
   "particles": {
-    "number": { "value": 100, "density": { "enable": true, "value_area": 900 } },
+    "number": { "value": 120, "density": { "enable": true, "value_area": 900 } },
     "color": { "value": "#0047AB" },
     "shape": { "type": "circle" },
-    "opacity": { "value": 0.6, "random": true },
+    "opacity": { "value": 0.7, "random": true },
     "size": { "value": 3, "random": true },
-    "line_linked": { "enable": true, "distance": 120, "color": "#0047AB", "opacity": 0.4, "width": 1.2 },
+    "line_linked": { "enable": true, "distance": 130, "color": "#0047AB", "opacity": 0.4, "width": 1.2 },
     "move": { "enable": true, "speed": 2, "direction": "none", "out_mode": "bounce" }
   },
   "interactivity": {
@@ -114,14 +95,22 @@ particlesJS("particles-js", {
   "retina_detect": true
 });
 
-// Progress bar animation
-let progress = 0;
-const progressBar = document.getElementById('progress-bar');
-const interval = setInterval(() => {
-  if(progress >= 100) clearInterval(interval);
-  progress += 1;
-  progressBar.style.width = progress + '%';
-}, 50);
+// Neural network animation: randomly highlight particles
+const canvas = document.querySelector('#particles-js canvas');
+const ctx = canvas?.getContext('2d');
+
+function highlightRandomParticles() {
+  if (!ctx || !window.pJSDom) return;
+  const particles = window.pJSDom[0].pJS.particles.array;
+  const n = 5; // number of particles to highlight
+  for (let i = 0; i < n; i++) {
+    const p = particles[Math.floor(Math.random() * particles.length)];
+    p.color.value = "#00aaff"; // bright cobalt highlight
+    setTimeout(() => { p.color.value = "#0047AB"; }, 400); // revert after 400ms
+  }
+}
+
+setInterval(highlightRandomParticles, 600); // highlight every 0.6s
 </script>
 
 </body>
