@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coming Soon | Hardik Kachhwaha</title>
+  
+  <!-- Favicon (optional) -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  
+  <style>
+    /* Reset & basic styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* GIF styling */
+    .coming-soon-gif {
+      max-width: 300px;
+      width: 80%;
+      margin-bottom: 30px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #cccccc;
+      max-width: 400px;
+      line-height: 1.5;
+    }
+
+    /* Optional: subtle pulse animation for text */
+    h1 {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    /* Responsive for small screens */
+    @media (max-width: 480px) {
+      h1 { font-size: 2rem; }
+      p { font-size: 1rem; }
+      .coming-soon-gif { max-width: 200px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Replace 'your-gif.gif' with your actual GIF file in the repo -->
+  <img src="your-gif.gif" alt="Coming Soon GIF" class="coming-soon-gif">
+
+  <h1>Coming Soon</h1>
+  <p>Hi, I’m Hardik Kachhwaha. My portfolio is getting ready! Stay tuned for updates, exciting projects, and more. Follow along here or on my social links.</p>
+
+</body>
+</html>
