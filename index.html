@@ -1,85 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coming Soon | Hardik Kachhwaha</title>
-  
-  <!-- Favicon (optional) -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  
-  <style>
-    /* Reset & basic styling */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coming Soon | Hardik Kachhwaha</title>
 
-    body {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: #ffffff;
-      font-family: 'Arial', sans-serif;
-      text-align: center;
-      padding: 20px;
-    }
+<!-- Particle.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
-    /* GIF styling */
-    .coming-soon-gif {
-      max-width: 300px;
-      width: 80%;
-      margin-bottom: 30px;
-      animation: float 3s ease-in-out infinite;
-    }
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(135deg, #0f2027, #001f4d, #002f70); /* darker cobalt gradient */
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+  }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
-    }
+  #particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
 
-    h1 {
-      font-size: 2.5rem;
-      letter-spacing: 2px;
-      margin-bottom: 15px;
-    }
+  .content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    padding: 20px;
+  }
 
-    p {
-      font-size: 1.1rem;
-      color: #cccccc;
-      max-width: 400px;
-      line-height: 1.5;
-    }
+  h1 {
+    font-size: 3rem;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    color: #0047AB; /* cobalt blue headline */
+    text-shadow: 0 0 10px #0047AB;
+    animation: pulse 2s infinite;
+  }
 
-    /* Optional: subtle pulse animation for text */
-    h1 {
-      animation: pulse 2s infinite;
-    }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
-    }
+  p {
+    font-size: 1.2rem;
+    max-width: 450px;
+    color: #cccccc;
+    margin-bottom: 40px;
+  }
 
-    /* Responsive for small screens */
-    @media (max-width: 480px) {
-      h1 { font-size: 2rem; }
-      p { font-size: 1rem; }
-      .coming-soon-gif { max-width: 200px; }
-    }
-  </style>
+  .progress-container {
+    width: 300px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    width: 0%;
+    height: 15px;
+    background: #0047AB; /* cobalt blue progress */
+    border-radius: 20px;
+    transition: width 0.5s ease;
+  }
+
+  @media (max-width: 480px) {
+    h1 { font-size: 2rem; }
+    p { font-size: 1rem; }
+    .progress-container { width: 200px; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- Replace 'your-gif.gif' with your actual GIF file in the repo -->
-  <img src="your-gif.gif" alt="Coming Soon GIF" class="coming-soon-gif">
+<div id="particles-js"></div>
 
+<div class="content">
   <h1>Coming Soon</h1>
-  <p>Hi, I’m Hardik Kachhwaha. My portfolio is getting ready! Stay tuned for updates, exciting projects, and more. Follow along here or on my social links.</p>
+  <p>Hi, I’m Hardik Kachhwaha. My portfolio is loading data… stay tuned for projects, analytics, and AI insights!</p>
+  <div class="progress-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+</div>
+
+<script>
+// Particle.js configuration with cobalt blue "neural network" effect
+particlesJS("particles-js", {
+  "particles": {
+    "number": { "value": 100, "density": { "enable": true, "value_area": 900 } },
+    "color": { "value": "#0047AB" },
+    "shape": { "type": "circle" },
+    "opacity": { "value": 0.6, "random": true },
+    "size": { "value": 3, "random": true },
+    "line_linked": { "enable": true, "distance": 120, "color": "#0047AB", "opacity": 0.4, "width": 1.2 },
+    "move": { "enable": true, "speed": 2, "direction": "none", "out_mode": "bounce" }
+  },
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } },
+    "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } }, "push": { "particles_nb": 4 } }
+  },
+  "retina_detect": true
+});
+
+// Progress bar animation
+let progress = 0;
+const progressBar = document.getElementById('progress-bar');
+const interval = setInterval(() => {
+  if(progress >= 100) clearInterval(interval);
+  progress += 1;
+  progressBar.style.width = progress + '%';
+}, 50);
+</script>
 
 </body>
 </html>
